@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 107.743 sec <<< FAILURE!
+validation(shoppingSite.TestCase_1)  Time elapsed: 65.5 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at shoppingSite.TestCase_1.validation(TestCase_1.java:61)
+
