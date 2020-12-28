@@ -7,11 +7,11 @@
   </listeners>
   <test thread-count="5" name="2nd Test Case(failed)">
     <classes>
-      <class name="shoppingSite.TestCase_3">
+      <class name="shoppingSite.TestCase_4">
         <methods>
-          <include name="test"/>
+          <include name="totalValidation"/>
         </methods>
-      </class> <!-- shoppingSite.TestCase_3 -->
+      </class> <!-- shoppingSite.TestCase_4 -->
     </classes>
   </test> <!-- 2nd Test Case(failed) -->
 </suite> <!-- Failed suite [All Test Suite] -->
