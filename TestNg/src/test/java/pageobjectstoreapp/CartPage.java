@@ -55,7 +55,7 @@ public class CartPage {
 
 
 
-    public void ProductValidation(){
+    public double ProductValidation(){
         //        Amount validation test
 //        Adding items to cart
        AddToCart.get(0).click();
@@ -75,7 +75,6 @@ public class CartPage {
             String text1=ProductPrice.get(i).getText(); //driver.findElementsById("com.androidsample.generalstore:id/productPrice").get(i).getText();
             double dtext1=Amount(text1);
             sum=sum+dtext1;
-
         }
 
         System.out.println(sum);
@@ -84,14 +83,16 @@ public class CartPage {
         text3=text3.substring(1);
         double dtext4=Double.parseDouble(text3);
 
-        if (sum==dtext4){
+        /*if (sum==dtext4){
             System.out.println("Passed");
         }
         else
         {
             System.out.println("Failed");
-        }
+        }*/
+        return sum;
     }
+
     public static double Amount(String value){
         value=value.substring(1);
         double dtext1=Double.parseDouble(value);

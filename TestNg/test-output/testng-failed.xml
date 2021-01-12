@@ -2,16 +2,17 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [All Test Suite]" guice-stage="DEVELOPMENT">
   <listeners>
+    <listener class-name="reports.ExtentReporterNG"/>
     <listener class-name="org.testng.reporters.EmailableReporter"/>
     <listener class-name="org.testng.reporters.FailedReporter"/>
   </listeners>
-  <test thread-count="5" name="2nd Test Case(failed)">
+  <test thread-count="5" name="First Test Case(failed)">
     <classes>
-      <class name="shoppingSite.TestCase_4">
+      <class name="flipkartTesting.SignInPageTest">
         <methods>
-          <include name="totalValidation"/>
+          <include name="signin"/>
         </methods>
-      </class> <!-- shoppingSite.TestCase_4 -->
+      </class> <!-- flipkartTesting.SignInPageTest -->
     </classes>
-  </test> <!-- 2nd Test Case(failed) -->
+  </test> <!-- First Test Case(failed) -->
 </suite> <!-- Failed suite [All Test Suite] -->

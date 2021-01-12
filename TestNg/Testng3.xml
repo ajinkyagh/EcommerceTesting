@@ -8,8 +8,8 @@
     </listeners>
     <test verbose="2" preserve-order="true" name="2nd Test Case">
         <classes>
-            <class name="shoppingSite.TestCase_5"/>
-            <class name="shoppingSite.main"/>
+            <class name="shoppingSite.PriceValidationTest"/>
+            <class name="shoppingSite.AppCapabilities"/>
         </classes>
     </test>
 </suite>

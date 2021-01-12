@@ -37,6 +37,8 @@ public class ProductsPage {
     @AndroidFindBy(id = "com.androidsample.generalstore:id/productName")
     public WebElement LastText;
 
+
+
     public void ProductAdd() throws InterruptedException {
       //        Actual Test Case
 //        Scrolling to a specific item more precisely uses different syntax
@@ -47,7 +49,7 @@ public class ProductsPage {
 
         int count =ProductName.size();
         //driver.findElementsById("com.androidsample.generalstore:id/productName").size();//Returns size based on total products on the screen not all
-        System.out.println(count);
+       // System.out.println(count);
 
         for(int i=0;i<count;i++){
             text=ProductName.get(i).getText();
@@ -59,17 +61,27 @@ public class ProductsPage {
                 break;
             }
         }
-        FinalCart.click();
+
+
+    }
+
+    public int getNumberOfProductsInCart() {
+        String txtcounter= driver.findElementById("com.androidsample.generalstore:id/counterText").getText();
+        System.out.println(txtcounter);
+        return Integer.parseInt(txtcounter);
+    }
+
+    public  void ViewCart() throws InterruptedException {
+         FinalCart.click();
         //driver.findElementById("com.androidsample.generalstore:id/appbar_btn_cart").click();
-        Thread.sleep(5000);
+        /*Thread.sleep(5000);
 
 //       Validation of the items selected on page2 with page3
         String lastpagetext=LastText.getText();
         //driver.findElementById("com.androidsample.generalstore:id/productName").getText();
 
         if (lastpagetext.equals("Jordan 6 Rings")) {
-            System.out.println("Case Passed");
-        }
-
+            //System.out.println("Case Passed");
+        }*/
     }
 }

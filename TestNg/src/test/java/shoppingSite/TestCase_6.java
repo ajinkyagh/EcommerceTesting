@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 import static io.appium.java_client.touch.offset.ElementOption.element;
 
-public class TestCase_6 extends main {
+public class TestCase_6 extends AppCapabilities {
     public static void main(String[] args) throws IOException, InterruptedException {
         AndroidDriver<AndroidElement> driver=Capabilities();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
