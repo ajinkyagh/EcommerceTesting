@@ -28,7 +28,10 @@ public class SignInPage implements AccountDetailsFetchable {
     public WebElement SelectButton;
 
     @AndroidFindBy(id = "com.flipkart.android:id/bottom_bar_container")
-    public WebElement OtpButton;
+    public WebElement OtpSend;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Please enter OTP we've sent you on +91-9552864146 Edit']")
+    public WebElement OtpPage;
 
     public AccountDetailsFetchable signIn() throws IOException, InterruptedException {
         if (welcomePageWithLogin()) {
@@ -43,12 +46,23 @@ public class SignInPage implements AccountDetailsFetchable {
         SelectButton.click();
         Thread.sleep(5000);
         FlipkartUtilities.EnterPhoneNumber("9552864146", "40827379");
-        OtpButton.click();
-        //Password.sendKeys("notebook");
-        //Continue.click();
+        OtpSend.click();
+            //Password.sendKeys("notebook");
+            //Continue.click();
+
+
         Thread.sleep(5000);
         return loginSuccessful();
     }
+
+    private boolean OtpIsSuccessful() {
+        try{
+            return driver.findElementByXPath("//android.widget.TextView[@text='Please enter OTP we've sent you on +91-9552864146 Edit']").isDisplayed();
+        }catch (Throwable throwable){
+            return false;
+        }
+    }
+
 
     private boolean loginSuccessful() {
         try {

@@ -12,13 +12,16 @@ import pageobjectstoreapp.Utilities;
 
 import java.io.IOException;
 
+import static io.appium.java_client.touch.offset.ElementOption.element;
+
 public class AddToCart {
     private final Utilities utilities;
     private final AppiumDriver driver;
     private String MobileName;
+    private WebElement element;
 
-    public AddToCart(AppiumDriver driver){
-        PageFactory.initElements(new AppiumFieldDecorator(driver),this);
+    public AddToCart(AppiumDriver driver) {
+        PageFactory.initElements(new AppiumFieldDecorator(driver), this);
         this.utilities = new Utilities((AndroidDriver<AndroidElement>) driver);
         this.driver = driver;
     }
@@ -32,7 +35,7 @@ public class AddToCart {
     @AndroidFindBy(accessibility = "Search grocery products in Supermart")
     public WebElement SearchBox2;
 
-    @AndroidFindBy(xpath ="//android.widget.TextView[@text='samsung mobiles']" )
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='samsung mobiles']")
     public WebElement SamsungMobiles;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Samsung Galaxy F41 (Fusion Green, 128 GB)']")
@@ -53,24 +56,38 @@ public class AddToCart {
     @AndroidFindBy(xpath = "//android.widget.TextView[1]")
     public WebElement MobileInCart;
 
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ImageView")
+
+    public WebElement upButton;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Samsung Guru 1200']")
+    public WebElement guru;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='SKIP']")
+    public WebElement skipGuru;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='GO TO CART']")
+    public WebElement goToCart;
+
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.TextView[1]")
+    public WebElement guru2;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='SKIP & GO TO CART']")
+    public WebElement skipAndgo;
 
 
-
-
-
-    public String AddToCartExecution() throws InterruptedException, IOException {
+    public void AddToCartExecution() throws InterruptedException, IOException {
 
         welcomePageWithoutSignin();
         searchForAProduct();
         ProductAddToCart();
-        String price=null;
-        price = myCart();
-        return price;
 
     }
 
-    public void setScroll(){
-        driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textMatches(\"1\").instance(0))"));
+
+    public void setScroll(String text) {
+        driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textMatches(\"" + text + "\"))"));
+
     }
 
     public void welcomePageWithoutSignin() throws InterruptedException {
@@ -96,14 +113,78 @@ public class AddToCart {
         Skip.click();
     }
 
-    public String myCart(){
-       String price= MobileInCart.getText().toString();
+    public String myCartValidationGalaxy() {
+        String price = MobileInCart.getText().toString();
         return price;
     }
 
+    public void AddAnotherProduct() throws InterruptedException {
+        BackButton.click();
+        setScroll("All Details");
+        upButton.click();
+        BackButton.click();
+        Thread.sleep(5000);
+        guru.click();
+        AddToCart.click();
+        Thread.sleep(5000);
+
+        skipGuru.click();
+       //skipAndgo.click();
+       goToCart.click();
+    }
+
+    public String myCartValidationGuru() {
+        String name = guru2.getText().toString();
+        return name;
+    }
+
+    public long ProductValidation() throws InterruptedException {
+        Thread.sleep(5000);
+        long Price1=ProductOne();
+        long Price2=ProductTwo();
+        long predictedPrice =Price1+Price2;
+        return predictedPrice;
+
+    }
+    public long actualPriceOfCart(){
+        String actualPriceString =driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.TextView[1]").getText().toString();
+        long actualPrice=amountConvertToLong(actualPriceString);
+        return actualPrice;
+    }
+    public long ProductOne() throws InterruptedException {
+        Thread.sleep(5000);
+        String amountInString1 = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[1]/android.widget.TextView[1]").getText().toString();
+        long product1Price= amountConvertToLong(amountInString1);
+        return product1Price;
+    }
+
+    public long ProductTwo() throws InterruptedException {
+        Thread.sleep(5000);
+        String amountInString2 = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[1]/android.widget.TextView[1]").getText().toString();
+        long product2Price= amountConvertToLong(amountInString2);
+        return product2Price;
+    }
 
 
+    public long amountConvertToLong(String price) {
+        char[] amt = new char[price.length()];
+        char[] amt1 = new char[price.length()];
+        int j=0;
+        for (int i = 0; i < price.length(); i++) {
+            amt[i] = price.charAt(i);
 
+        }
+        for(int i=0;i<amt.length;i++){
+            if (amt[i] != '₹' && amt[i] != ',') {
+                amt1[j]=amt[i];
+                j++;
+            }
 
-
+        }
+        long amounttoLong=Long.parseLong(String.valueOf(amt1).trim());
+        return amounttoLong;
+    }
 }
+
+
+

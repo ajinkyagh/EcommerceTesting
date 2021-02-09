@@ -9,7 +9,7 @@
     </listeners>
     <test verbose="2" preserve-order="true" name="First Test Case">
         <classes>
-            <class name="flipkartTesting.SignInPageTest"/>
+            <class name="flipkartTesting.AddToCartTest"/>
         </classes>
     </test>
 </suite>

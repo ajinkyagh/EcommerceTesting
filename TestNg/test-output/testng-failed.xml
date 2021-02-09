@@ -8,11 +8,11 @@
   </listeners>
   <test thread-count="5" name="First Test Case(failed)">
     <classes>
-      <class name="flipkartTesting.SignInPageTest">
+      <class name="flipkartTesting.AddToCartTest">
         <methods>
-          <include name="signin"/>
+          <include name="addToCart"/>
         </methods>
-      </class> <!-- flipkartTesting.SignInPageTest -->
+      </class> <!-- flipkartTesting.AddToCartTest -->
     </classes>
   </test> <!-- First Test Case(failed) -->
 </suite> <!-- Failed suite [All Test Suite] -->

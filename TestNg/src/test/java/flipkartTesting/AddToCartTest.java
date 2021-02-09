@@ -14,8 +14,17 @@ public class AddToCartTest extends FlipkartCapabilities {
         AndroidDriver<AndroidElement> driver =Capabilities();
         AddToCart addToCart=new AddToCart(driver);
         String name=null;
-        name=addToCart.AddToCartExecution();
+        addToCart.AddToCartExecution();
+        name=addToCart.myCartValidationGalaxy();
         Assert.assertEquals("Deliver to ",name);
+        addToCart.AddAnotherProduct();
+        name=addToCart.myCartValidationGuru();
+        Assert.assertEquals(name,"Samsung Guru 1200 ");
+        long actualprice =addToCart.ProductValidation();
+        long predictedPrice=addToCart.actualPriceOfCart();
+       Assert.assertEquals(actualprice,predictedPrice);
     }
+
+
 
 }

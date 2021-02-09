@@ -13,6 +13,7 @@ public class Uiautomatortest extends Basic{
 
         driver.findElementByAndroidUIAutomator("text(\"OK\")").click();
 
+
 //        findElementByAndroidUIAutomator used to find ids from app
 //    Syntax    driver.findElementByAndroidUIAutomator("attribute("value")");
         driver.findElementByAndroidUIAutomator("text(\"Views\")").click();
